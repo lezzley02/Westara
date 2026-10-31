@@ -63,7 +63,7 @@ button { color: inherit; }
 .nav-mobile-link, .nav-mobile-cta, .mobile-menu-button { display: none; }
 /* hero */
 .home-hero { min-height: min(840px, 100svh); min-height: max(700px, 100svh); position: relative; display: flex; align-items: center; overflow: hidden; background: #0a0f13; }
-.hero-image { position: absolute; inset: 0; background-image: url('/manus-storage/westara-hero_d764984a.jpg'); background-position: center 56%; background-size: cover; transform: scale(1.015); animation: hero-settle 1.2s ease-out both; }
+.hero-image { position: absolute; inset: 0; background-image: url('/images/westara-hero.jpg'); background-position: center 56%; background-size: cover; transform: scale(1.015); animation: hero-settle 1.2s ease-out both; }
 .hero-gradient { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6,8,9,.97) 0%, rgba(6,8,9,.79) 36%, rgba(6,8,9,.18) 72%, rgba(6,8,9,.08) 100%), linear-gradient(0deg, rgba(6,8,9,.75) 0%, transparent 28%, rgba(6,8,9,.06) 68%, rgba(6,8,9,.36) 100%); }
 .hero-content { position: relative; z-index: 1; padding-top: 105px; }
 .hero-kicker { display: flex; align-items: center; gap: 9px; margin-bottom: 28px; color: #c6c9c5; }
@@ -201,7 +201,7 @@ button { color: inherit; }
 .form-error { color: #ffb6a9; font-size: 11px; }
 /* auth */
 .auth-page { min-height: 100svh; display: grid; grid-template-columns: 1.05fr .95fr; background: var(--ink); }
-.auth-visual { position: relative; min-height: 620px; display: flex; flex-direction: column; justify-content: space-between; padding: 35px clamp(30px, 5vw, 72px); background-image: linear-gradient(180deg, rgba(3,5,6,.2), rgba(3,5,6,.88)), url('/manus-storage/westara-hero_d764984a.jpg'); background-size: cover; background-position: center; }
+.auth-visual { position: relative; min-height: 620px; display: flex; flex-direction: column; justify-content: space-between; padding: 35px clamp(30px, 5vw, 72px); background-image: linear-gradient(180deg, rgba(3,5,6,.2), rgba(3,5,6,.88)), url('/images/westara-hero.jpg'); background-size: cover; background-position: center; }
 .auth-visual h1 { max-width: 540px; margin: auto 0 0; padding-bottom: 45px; font-size: clamp(40px, 6vw, 74px); line-height: .98; letter-spacing: -.07em; font-weight: 500; }
 .auth-visual h1 em { color: var(--lime); font-style: normal; }
 .auth-visual-foot { color: rgba(244,241,234,.65); font: 9px "DM Mono", monospace; }

@@ -18,6 +18,12 @@ Build `/admin` as a protected administration dashboard with overview counts deri
 
 Create a concise `README.md` covering development, database migration, authentication/runtime configuration, provider integration boundaries, and deployment. Use additive migrations only; do not perform destructive SQL. Run code/type diagnostics, `pnpm check`, `pnpm test` where applicable, production build, route-manifest HTTP check, and read-only review of ownership/RBAC paths. Do not create or delete records in the shared managed database to test flows.
 
+## Vercel hosting path (requested; configuration only)
+
+Keep the existing Manus/Docker runtime and `pnpm build` behavior intact. Extract the shared Express middleware/API setup into `server/_core/app.ts`; let `server/_core/index.ts` remain the standalone Manus/dev launcher, and add a root `index.ts` that exports the same Express app for Vercel's single Node function. Add `pnpm build:vercel` to build Vite static output into a generated root `public/` directory while preserving `dist/public` for the current container build. The Vercel config will use the Express framework preset, include the built HTML shell for the custom `/404` status response, and rewrite only `/login`, `/app`, and `/admin` to `/index.html`; API, OAuth, and missing-file paths must reach Express and must not be swallowed by an SPA catch-all.
+
+Make the generated homepage images portable by keeping the optimized source images under `client/public/images/` and referencing them with root-relative `/images/...` URLs rather than Manus-only `/manus-storage/` paths. Add a blank-value `.env.example` and README deployment instructions naming build-time browser-safe OAuth/Maps variables separately from runtime-only secrets and database settings. Explain that the Manus OAuth callback must accept `https://<deployed-domain>/api/oauth/callback`, that the database endpoint must be reachable from Vercel functions, and that provider integrations remain unconfigured until the owner adds valid provider access. Commit configuration only; do not deploy to Vercel or transfer secrets.
+
 ## Design direction
 
 ### Design movement

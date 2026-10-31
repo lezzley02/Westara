@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "express",
+  "buildCommand": "pnpm build:vercel",
+  "rewrites": [
+    { "source": "/login", "destination": "/index.html" },
+    { "source": "/app", "destination": "/index.html" },
+    { "source": "/admin", "destination": "/index.html" }
+  ],
+  "functions": {
+    "index.ts": {
+      "includeFiles": "public/index.html"
+    }
+  }
+}
