@@ -1,0 +1,1 @@
+{"routes":[{"path":"/","title":"Home"},{"path":"/login","title":"Authentication"},{"path":"/app","title":"Owner Dashboard"},{"path":"/admin","title":"Administration"}]}
