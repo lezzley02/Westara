@@ -1,7 +1,10 @@
+import express from "express";
 import path from "node:path";
 import { createApp } from "./server/_core/app";
 
-const app = createApp();
+// Vercel's Express framework detector requires Express to be imported and
+// instantiated in the root entrypoint. The shared factory attaches all APIs.
+const app = createApp(express());
 const indexHtml = path.resolve(process.cwd(), "public", "index.html");
 
 // Preserve the starter's hard 404 response while returning the SPA shell so
@@ -12,9 +15,8 @@ app.get("/404", (_req, res, next) => {
   });
 });
 
-// Vercel serves existing public/ assets from its CDN. For extensionless page
-// paths not explicitly rewritten to index.html, serve the shell so Wouter can
-// render its not-found route. Never turn API, OAuth, storage, or file requests
+// Vercel serves existing public/ assets from its CDN. Serve the SPA shell for
+// extensionless page routes; never turn API, OAuth, platform, or file requests
 // into HTML responses.
 app.use((req, res, next) => {
   if (req.method !== "GET" && req.method !== "HEAD") return next();

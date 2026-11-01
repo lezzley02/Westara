@@ -22,7 +22,7 @@ The Vite app runs through Express so OAuth callbacks, tRPC, health checks, maps 
 
 ## Vercel hosting
 
-The repository includes a Vercel Express entrypoint (`index.ts`), a shared Express app factory (`server/_core/app.ts`), an explicit `vercel.json`, and the `pnpm build:vercel` Vite build. Vercel builds static files into the generated root `public/` directory and serves them from its CDN; the Express function handles `/api/*`, OAuth, and the custom `/404` response. SPA rewrites are limited to `/login`, `/app`, and `/admin`, so API and OAuth paths are not rewritten to the frontend. The generated root `public/` directory is intentionally ignored by Git; Vercel creates it during each build.
+The repository includes a Vercel Express entrypoint (`index.ts`) that directly imports and instantiates Express, a shared app factory (`server/_core/app.ts`), an explicit `vercel.json`, and the `pnpm build:vercel` Vite build. Vercel builds static files into the generated root `public/` directory and serves them from its CDN; the Express function handles `/api/*`, OAuth, and the custom `/404` response. Extensionless frontend routes (`/`, `/login`, `/app`, and `/admin`) are served by the Express HTML fallback, without internal Vercel rewrites. The generated root `public/` directory is intentionally ignored by Git; Vercel creates it during each build.
 
 To deploy, import `lezzley02/Westara` into Vercel with the repository root as the project root, then add the environment variables below to the appropriate Production and Preview environments. Vercel's build invokes `pnpm build:vercel` through `vercel.json`. The current Manus deployment remains available through its existing `pnpm build` and `pnpm start` commands.
 
@@ -42,7 +42,7 @@ The OAuth client constructs its callback from the deployed browser origin. Add t
 
 Vercel functions must be able to reach the configured MySQL endpoint over TLS. The Manus-managed database may have platform-specific network access rules; confirm its external connectivity and connection limits before using it from Vercel. If it is not reachable, use a Vercel-accessible MySQL provider and migrate the existing schema/data through an authorized process. The project does not provision that database, add environment-variable values, or run migrations during the Vercel build. Development and production must not be treated as isolated if pointed at the same database.
 
-This repository is configured for Vercel but has not been linked to a Vercel account or deployed. No secrets were copied or transferred. After setting variables and the OAuth callback, the repository owner can deploy through Vercel.
+The repository has been imported into Vercel and an initial build was attempted. That build did not detect Express in the root entrypoint; the entrypoint has since been corrected and pushed, so start a fresh deployment and confirm the build succeeds. No Vercel environment values or secrets were copied or transferred by this session.
 
 ## Database
 

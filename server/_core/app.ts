@@ -5,9 +5,7 @@ import { publicPlatformScript } from "./publicConfig";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 
-export function createApp(): Express {
-  const app = express();
-
+export function createApp(app: Express = express()): Express {
   // Keep the existing request-size allowance for the Manus-hosted application.
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
